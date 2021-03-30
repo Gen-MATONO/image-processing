@@ -18,7 +18,7 @@ plt.show()
 import cv2
 
 # function: BGR -> RGB
-def BGR2RGB(img):
+def BGR2RGB(img): # Cv2's colour order is BGR
     b = img[:, :, 0].copy()
     g = img[:, :, 1].copy()
     r = img[:, :, 2].copy()
