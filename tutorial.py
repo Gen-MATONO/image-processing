@@ -1,14 +1,19 @@
+# **********************************************************************************************
+# このやり方はmatplotlibを使ったりと少しめんどくさいやり方をしている．opencvだけでもできる
+# **********************************************************************************************
+
 from skimage import io
 import numpy as np
 import cv2 # opencv
 import matplotlib.pyplot as plt
 
-
-img_original = io.imread('https://yoyoyo-yo.github.io/Gasyori100knock/assets/imori_256x256.png') # skimageを使ったwebからの画像読み込み
+# img_original = io.imread('https://yoyoyo-yo.github.io/Gasyori100knock/assets/imori_256x256.png')  # skimageを使ったwebからの画像読み込み
+img_original = cv2.imread('Q1_Q10/imori.jpg')
 # opencvを使って既存フォルダから画像を読み込むと画像のデータ順序はRとBが反転しているため，正規の色で表現したいときは色を入れ替える必要あり
 # io.imreadで読み込んだ画像をimg_original.dtypeで見てみるとuinitになっている．これは正負のない整数データであることを示す．
 
 img = img_original.copy().astype(np.float64) # 元のデータを汚さないために.copy()でコピーを作り.astype(float64)で倍精度浮動小数にデータを変形している．
+img[:, :, :] = img[:, :, ::-1] # opencvを使って既存フォルダから画像を読み込むと画像のデータ順序はRとBが反転しているため，反転
 # 浮動小数型に変更する理由はデータをいじる際に整数だと切り捨て誤差や0, 255付近でデータが足りない，負の処理ができないなどの様々な不便が生じるから．
 
 img /=255 # init型は[0, 255]で画像出力ができるがfloat型を画像出力するためには[0., 1]にしなければならない
@@ -34,3 +39,23 @@ img3[: h//2, : w//2] = img3[: h//2, : w//2, ::-1] # ::-1はスライスという
 # スライスはリスト及び配列タプルの切り取りを行うことが出来る．start:stop:stepの順で指定し取り出す(今回は最初から最後までを逆順で取り出している)
 ax.imshow(img3)
 plt.show()
+
+
+# *************************************************************************************************
+# -------------------------------------------------------------------------------------------------
+# opencvを使って画像をいじる
+# -------------------------------------------------------------------------------------------------
+
+# import numpy as np
+# import cv2 # opencvのチャンネルは全てBGRであることに注意する
+
+# img_original = cv2.imread('Q1_Q10/imori.jpg')
+
+# # img_original[:, :, :] = img_original[:, :, ::-1]
+
+# print(img_original.shape)
+
+# cv2.imshow("imori", img_original)
+# cv2.waitKey(0)
+# cv2.destroyAllWindows()
+# *************************************************************************************************
