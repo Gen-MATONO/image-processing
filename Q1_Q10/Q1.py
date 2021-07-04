@@ -1,43 +1,67 @@
-import numpy as np
-import matplotlib.pyplot as plt
-from skimage import io
+##############################################
+# --------------------------------------------
+# THE ANSWER PATURN WHICH USE SKIMAGE AND PLT
+# --------------------------------------------
 
-img_original = io.imread('https://raw.githubusercontent.com/Gen-MATONO/Gasyori100knock/master/Question_01_10/imori.jpg')
+# import numpy as np
+# import matplotlib.pyplot as plt
+# from skimage import io
 
+# img_original = io.imread('https://raw.githubusercontent.com/Gen-MATONO/Gasyori100knock/master/Question_01_10/imori.jpg')
+
+# img = img_original.copy()
+# img = img[..., :: -1]
+
+# plt.figure()
+# ax = plt.subplot()
+# ax.imshow(img)
+# plt.show()
+
+##############################################
+# --------------------------------------------
+# THE ANSWER PATURN WHICH USE ONLY OPENCV
+# --------------------------------------------
+import cv2
+
+img_original = cv2.imread('imori.jpg')
 img = img_original.copy()
-img = img[..., :: -1]
 
-plt.figure()
-ax = plt.subplot()
-ax.imshow(img)
-plt.show()
+img = img[:, :, ::-1]
+
+cv2.imshow('imori', img)
+cv2.waitKey(0)
+cv2.destroyAllWindows
+
+##############################################
+
 
 ##############################################
 # ANSWER
 ##############################################
-import cv2
 
-# function: BGR -> RGB
-def BGR2RGB(img): # Cv2's colour order is BGR
-    b = img[:, :, 0].copy()
-    g = img[:, :, 1].copy()
-    r = img[:, :, 2].copy()
+# import cv2
 
-    # RGB > BGR
-    img[:, :, 0] = r
-    img[:, :, 1] = g
-    img[:, :, 2] = b
+# # function: BGR -> RGB
+# def BGR2RGB(img): # Cv2's colour order is BGR
+#     b = img[:, :, 0].copy()
+#     g = img[:, :, 1].copy()
+#     r = img[:, :, 2].copy()
 
-    return img
+#     # RGB > BGR
+#     img[:, :, 0] = r
+#     img[:, :, 1] = g
+#     img[:, :, 2] = b
 
-# Read image
-img = cv2.imread("imori.jpg")  # There isn't imori.jpg in this directory. So you should alternatively use io from skimage.
+#     return img
 
-# BGR -> RGB
-img = BGR2RGB(img)
+# # Read image
+# img = cv2.imread("imori.jpg")  # There isn't imori.jpg in this directory. So you should alternatively use io from skimage.
 
-# Save result
-cv2.imwrite("out.jpg", img)
-cv2.imshow("result", img)
-cv2.waitKey(0) # Program is going to stop until you type sny key.
-cv2.destroyAllWindows() # Brake all windows
+# # BGR -> RGB
+# img = BGR2RGB(img)
+
+# # Save result
+# cv2.imwrite("out.jpg", img)
+# cv2.imshow("result", img)
+# cv2.waitKey(0) # Program is going to stop until you type sny key.
+# cv2.destroyAllWindows() # Brake all windows
