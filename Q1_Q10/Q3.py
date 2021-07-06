@@ -67,7 +67,7 @@ cv2.destroyAllWindows
 # # ※※※
 # # この構文はndarrayの特定の要素を抽出可能な構文である．
 # # ndarray[condition] で条件を満たすものだけを抽出し1次元に平坦化された配列ができる．
-# # ndarray > th（閾値）とすると閾値をtrueとfalseで出来た配列ができる
+# # ndarray > th（閾値）とすると閾値をtrueとfalseで出来た配列(bool型配列)ができる
 # # ndarray[condition] = value とすると，上に書いたような配列でtrueにだけ代入することができる．
 # # （今回の場合condition が ndarray > th であった．）
 
