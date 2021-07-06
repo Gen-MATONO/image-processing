@@ -1,3 +1,9 @@
 {
-    "python.pythonPath": "/home/gubuntu/.venvs/pygen-D6Ko0cuO/bin/python"
+    "python.pythonPath": "/home/gubuntu/.venvs/pygen-D6Ko0cuO/bin/python",
+    "cSpell.words": [
+        "Gasyori",
+        "Otsu's",
+        "imori",
+        "otsu"
+    ]
 }

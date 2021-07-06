@@ -1,68 +1,43 @@
-import cv2
 import numpy as np
 
-# Gray scale
-def BGR2GRAY(img):
-    b = img[:, :, 0].copy()
-    g = img[:, :, 1].copy()
-    r = img[:, :, 2].copy()
+from numpy.lib.function_base import average
+import cv2
+from numpy.lib.index_tricks import index_exp
 
-    # Gray scale
-    out = 0.2126 * r + 0.7152 * g + 0.0722 * b
-    out = out.astype(np.uint8)
+# def convert_gray(img):
+#     img = img.astype(np.float64)
+#     b = img[:, :, 0]
+#     g = img[:, :, 1]
+#     r = img[:, :, 2]
+#     out = 0.2126*r + 0.7152*g + 0.0722*b
+#     return out.astype(np.uint8)
 
-    return out
+# img_original = cv2.imread('Q1_Q10/imori.jpg')
+# img = img_original.copy()
+# gray = convert_gray(img)
+# print(gray.shape)
 
-# Otsu Binalization
-def otsu_binarization(img):
-    max_sigma = 0
-    max_t = 0
-    H, W = img.shape
+# a = [(i, j) np.arange(1, 20, 2)]
+# print(a[])
+# print(average(a[1:4]))
 
-    # determine threshold
-    for _t in range(1, 256):
-        # v0 and v1 are the array of pixels in class1 and class2, respectively.
-        v0 = img[np.where(img < _t)] # np.where(cond)はcondを満たすときのindexをタプルで返す．
-                                     # img[((x),(y))]は二重タプルによる，配列の座標指定，(x, y)のimgを返す．
-        v1 = img[np.where(img >= _t)]
+a = [[i + j for i in range(4)] for j in range(0, 16, 4)]
+a = np.array(a)
+print(a, '\n')
 
-        # m0 and m1 are the average of each classes, respectively.
-        m0 = np.mean(v0) if len(v0) > 0 else 0.
-        m1 = np.mean(v1) if len(v1) > 0 else 0.
+index = np.where(a > 13)
+print(type(index))
+for i in index:
+    print(i)
+    print(a[i], '\n')
 
-        # w0 and w1 are the number of of each classes, respectively.
-        # There are normalized by all pixels(H * W).
-        w0 = len(v0) / (H * W)
-        w1 = len(v1) / (H * W)
+# b = [[n + m for n in range(4)] for m in range(0, 16, 4)]
+# b = np.array(b)
+# print(b)
 
-        # Sigma is distribution between two classes.
-        sigma = w0 * w1 * ((m0 - m1) ** 2)
-
-        # Otsu's algorithm determines the threshold when sigma is max value.
-        if sigma > max_sigma:
-            max_sigma = sigma
-            max_t = _t
-
-    # Binarization
-    print("threshold >>", max_t)
-    th = max_t
-    img[img < th] = 0
-    img[img >= th] = 255
-
-    return out
-
-
-# Read image
-img = cv2.imread("imori.jpg").astype(np.float64)
-
-# Grayscale
-out = BGR2GRAY(img)
-
-# Otsu's binarization
-out = otsu_binarization(out)
-
-# Save result
-# cv2.imwrite("out.jpg", out)
-cv2.imshow("result", out)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+# t = 5
+# # print(a[(([]), ([]))])
+# np.where(a == b)
+# a[np.where(a == b)] = 0
+# print(a)
+# # print(v)

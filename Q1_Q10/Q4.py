@@ -1,7 +1,7 @@
 # ##############################################################################
-# Q4 : Otsu's binalization
+# Q4 : Otsu's binarization
 # Reading Gasyori100knock in github and the following site makes easy
-# understanding for Otsu's binalization.
+# understanding for Otsu's binarization.
 # https://kazenoha.hatenablog.com/entry/2019/04/14/225643
 # The site title is "化学機械とかあれこれ，大津の二値化(判別分析法)の式変形とか"
 # ##############################################################################
@@ -47,7 +47,7 @@ def otsu(img):
 
     print('threshold is {}'.format(t_max))
 
-    # get binalization using threshold which was obtained in the previos section
+    # get binarization using threshold which was obtained in the previous section
     th = t_max
     img[img < th] = 0
     img[img >= th] = 255
@@ -61,7 +61,7 @@ img = img_original.copy()
 # convert to gray scale image
 img = convert_gray(img)
 
-# convert to binalization using Otsu's algorithm
+# convert to binarization using Otsu's algorithm
 img = otsu(img)
 
 # show image
@@ -88,7 +88,7 @@ cv2.destroyAllWindows
 
 #     return out
 
-# # Otsu Binalization
+# # Otsu Binarization
 # def otsu_binarization(img):
 #     max_sigma = 0
 #     max_t = 0
@@ -97,7 +97,7 @@ cv2.destroyAllWindows
 #     # determine threshold
 #     for _t in range(1, 256):
 #         # v0 and v1 are the array of pixels in class1 and class2, respectively.
-#         v0 = img[np.where(img < _t)] # np.where(cond)はcondを満たすときのindexをタプルで返す．
+#         v0 = img[np.where(img < _t)] # np.where(condition)はconditionを満たすときのindexをタプルで返す．
 #                                      # img[((x),(y))]は二重タプルによる，配列の座標指定，(x, y)のimgを返す．
 #         v1 = img[np.where(img >= _t)]
 
