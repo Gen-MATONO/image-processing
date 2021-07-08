@@ -3,6 +3,9 @@
 # H(Hue) : classification of color using 1 to 360
 # S(Saturation) : Vividness of color
 # V(Value) : Brightness of color
+# I can't write this program well.
+# I will skip this question. If you(you are me in the future) feel like, you will
+# try this question again.
 # ##############################################################################
 
 # ******************************************************************************
@@ -30,7 +33,7 @@ def hsv(img):
 
     H = Max
     H[np.where(Min == Max)] = 0
-    H[np.where(Min == B  )] = 60*(G[np.where(Min == B)] - R[np.where(Min == B)])/(Max[np.where(Min == B)]-Min[np.where(Min == B)]) + 60
+    H[np.where(Min == B  )] = 60*(G - R)/(Max-Min) + 60
     H[np.where(Min == R  )] = 60*(B - G)/(Max-Min) + 180
     H[np.where(Min == G  )] = 60*(R - B)/(Max-Min) + 300
 

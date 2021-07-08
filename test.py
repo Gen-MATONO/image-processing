@@ -1,8 +1,5 @@
 import numpy as np
-
-from numpy.lib.function_base import average
 import cv2
-from numpy.lib.index_tricks import index_exp
 
 # def convert_gray(img):
 #     img = img.astype(np.float64)
@@ -24,12 +21,12 @@ from numpy.lib.index_tricks import index_exp
 a = [[i + j for i in range(4)] for j in range(0, 16, 4)]
 a = np.array(a)
 print(a, '\n')
+h, w = a.shape
+h_list = [i for i in range(h)]
+w_list = [i for i in range(w)]
 
-index = np.where(a > 13)
-print(type(index))
-for i in index:
-    print(i)
-    print(a[i], '\n')
+a_ = [[a[i, j] + 5 if a[i, j] >10 else a[i, j] for j in h_list] for i in w_list]
+print(np.array(a_))
 
 # b = [[n + m for n in range(4)] for m in range(0, 16, 4)]
 # b = np.array(b)
