@@ -1,5 +1,5 @@
 # ##############################################################################
-# Q3 : Binalization using nomal threshold
+# Q3 : Binarization using normal threshold
 # ##############################################################################
 
 # ******************************************************************************
@@ -19,7 +19,7 @@ def convert_gray(img):
     out = 0.2126*r + 0.7152*g + 0.0722*b
     return out.astype(np.uint8)
 
-def binalization(img):
+def binarization(img):
     th = 128
     img[img < th] = 0
     img[img >= th] = 255
@@ -31,8 +31,8 @@ img = img_original.copy()
 
 # convert to gray scale
 img = convert_gray(img)
-# convert to binalization
-img = binalization(img)
+# convert to binarization
+img = binarization(img)
 
 
 cv2.imshow('imori', img)
@@ -59,8 +59,8 @@ cv2.destroyAllWindows
 
 # 	return out
 
-# # binalization
-# def binalization(img, th=128):
+# # binarization
+# def binarization(img, th=128):
 # 	img[img < th] = 0  # ※※※
 # 	img[img >= th] = 255 # ※※※
 # 	return img
@@ -78,8 +78,8 @@ cv2.destroyAllWindows
 # # Convert to Grayscale
 # out = BGR2GRAY(img)
 
-# # Convert to Binalization
-# out = binalization(out)
+# # Convert to Binarization
+# out = binarization(out)
 
 # # Save result
 # # cv2.imwrite("out.jpg", out)
