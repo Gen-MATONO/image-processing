@@ -33,15 +33,15 @@ def avg_pooling(img, x):
     # R_ = np.array([[np.average(R[i:i+x,j:j+x]) for j in range(0, w, x)] for i in range(0, h, x)])
     # /////////////////////////////////////////////////////////////////////////
 
-    for i in range(1, w, x):
-        for j in range(1, h, x):
-            for k in range(1, d):
+    for i in range(0, w, x):
+        for j in range(0, h, x):
+            for k in range(0, d):
                 out[i:i+x, j:j+x, k] = np.mean([out[i:i+x, j:j+x, k]])
 
     return out.astype(np.uint8)
 
 # Read image and pooling range
-X = int(input("Input range using in pooling process (What is x for x*x ?) : "))
+X = int(input("Input range used for pooling process (What is x for x*x ?) : "))
 img_original = cv2.imread('imori.jpg')
 img = img_original.copy()
 
@@ -60,36 +60,36 @@ cv2.destroyAllWindows
 # ------------------------------------------------------------------------------
 # answer code
 # ------------------------------------------------------------------------------
-# import cv2
-# import numpy as np
+import cv2
+import numpy as np
 
 
-# # average pooling
-# def average_pooling(img, G=8):
-#     out = img.copy()
+# average pooling
+def average_pooling(img, G=8):
+    out = img.copy()
 
-#     H, W, C = img.shape
-#     print(img.shape)
-#     Nh = int(H / G)
-#     Nw = int(W / G)
+    H, W, C = img.shape
+    print(img.shape)
+    Nh = int(H / G)
+    Nw = int(W / G)
 
-#     for y in range(Nh):
-#         for x in range(Nw):
-#             for c in range(C):
-#                 out[G*y:G*(y+1), G*x:G*(x+1), c] = np.mean(out[G*y:G*(y+1), G*x:G*(x+1), c]).astype(np.int)
+    for y in range(Nh):
+        for x in range(Nw):
+            for c in range(C):
+                out[G*y:G*(y+1), G*x:G*(x+1), c] = np.mean(out[G*y:G*(y+1), G*x:G*(x+1), c]).astype(np.int)
 
-#     return out
+    return out
 
 
-# # Read image
-# img = cv2.imread("imori.jpg")
+# Read image
+img = cv2.imread("imori.jpg")
 
-# # Average Pooling
-# out = average_pooling(img)
+# Average Pooling
+out = average_pooling(img)
 
-# # Save result
-# # cv2.imwrite("out.jpg", out)
-# cv2.imshow("result", out)
-# cv2.waitKey(0)
-# cv2.destroyAllWindows()
+# Save result
+# cv2.imwrite("out.jpg", out)
+cv2.imshow("result", out)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 # ******************************************************************************
